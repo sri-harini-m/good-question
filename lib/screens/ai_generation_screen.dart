@@ -1,85 +1,107 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AiGenerationScreen extends StatefulWidget {
   final String userInput;
   const AiGenerationScreen({super.key, required this.userInput});
 
   @override
-  State<AiGenerationScreen> createState() => _AiGenerationScreenState();
+  _AiGenerationScreenState createState() => _AiGenerationScreenState();
 }
 
 class _AiGenerationScreenState extends State<AiGenerationScreen> {
-  bool _isRunning = true;
-  int _elapsedTime = 0;
-  late Timer _timer;
-
-  String geminiOutput = "Generating potential molecules..."; // Placeholder text
+  String generatedMolecule = "Generating potential molecules...";
+  int elapsedTime = 0;
+  bool isPaused = false;
+  bool isStopped = false;
+  Timer? timer;
 
   @override
   void initState() {
     super.initState();
-    _startTimer();
-    _getGeminiResponse(widget.userInput);
+    startTimer();
+    fetchMoleculeFromAI();
   }
 
-  Future<void> _getGeminiResponse(String userInput) async {
-    String? apiKey;
-    try {
-      final fileContent = await DefaultAssetBundle.of(
-        context,
-      ).loadString('.idx/integrations.json');
-      final jsonData = jsonDecode(fileContent);
-      apiKey = jsonData['gemini_api'];
-    } catch (e) {}
-    if (apiKey == null || apiKey.isEmpty) {
-      setState(() {
-        geminiOutput =
-            'No \$GEMINI_API_KEY environment variable set.'; // Same error message
-      });
-      return; // Ensure early exit
-    }
-    final model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
-    final content = [
-      Content.text(
-        'Based on this data: $userInput, what could be a potential drug or molecule that interacts with it?',
-      ),
-    ];
-    final response = await model.generateContent(content);
-    setState(() {
-      geminiOutput = response.text ?? 'No response from Gemini API';
-    });
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_isRunning) {
+  void startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
+      if (!isPaused && !isStopped) {
         setState(() {
-          _elapsedTime++;
+          elapsedTime++;
         });
       }
     });
   }
 
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
+  Future<void> fetchMoleculeFromAI() async {
+    try {
+      final inputData = widget.userInput;
+      // final protein = inputData['protein'];
+      // final weight = inputData['weight'];
+      // final properties = inputData['properties'];
+      await dotenv.load(fileName: "../../.env");
+      final apiKey = dotenv.env['GEMINI_API_KEY'];
+      final url = Uri.parse(
+          'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey');
+
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'contents': [
+            {
+              'parts': [
+                {
+                  'text':
+                      'Generate a potential molecule that interacts with protein, has a molecular weight of approximately, and exhibits properties as $inputData. Just return a molecule and its SMILES notation string maybe, just that nothing else.'
+                }
+              ]
+            }
+          ]
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          generatedMolecule = data['candidates'][0]['content']['parts'][0]
+                  ['text'] ??
+              "No molecule generated";
+        });
+      } else {
+        setState(() {
+          generatedMolecule =
+              "Error: Failed to fetch molecule (Status: ${response.statusCode})";
+        });
+      }
+    } catch (e) {
+      setState(() {
+        generatedMolecule = "Error: $e";
+      });
+    }
   }
 
-  void _toggleTimer() {
+  void togglePauseResume() {
     setState(() {
-      _isRunning = !_isRunning;
+      isPaused = !isPaused;
     });
   }
 
-  void _stopGeneration() {
-    _timer.cancel();
+  void stopGeneration() {
     setState(() {
-      _isRunning = false;
+      isStopped = true;
+      timer?.cancel();
+      generatedMolecule = "Generation stopped.";
     });
-    print("Generation stopped");
   }
 
   @override
@@ -92,7 +114,11 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(geminiOutput),
+              Text(
+                generatedMolecule,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16),
+              ),
               const SizedBox(height: 16),
               const Text(
                 'AI is currently generating potential drug candidates...',
@@ -101,7 +127,7 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
               ),
               const SizedBox(height: 20),
               Text(
-                'Time elapsed: ${_elapsedTime}s',
+                'Time elapsed: ${elapsedTime}s',
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 20),
@@ -109,12 +135,12 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: _toggleTimer,
-                    child: Text(_isRunning ? 'Pause' : 'Resume'),
+                    onPressed: togglePauseResume,
+                    child: Text(isPaused ? 'Resume' : 'Pause'),
                   ),
                   const SizedBox(width: 16),
                   ElevatedButton(
-                    onPressed: _stopGeneration,
+                    onPressed: stopGeneration,
                     child: const Text('Stop'),
                   ),
                 ],
