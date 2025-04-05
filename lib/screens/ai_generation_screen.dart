@@ -6,6 +6,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:universal_html/html.dart' as html;
 
 class AiGenerationScreen extends StatefulWidget {
   final String userInput;
@@ -132,23 +134,37 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
 
   Future<void> _downloadReport() async {
     try {
-      if (await Permission.storage.request().isGranted) {
-        final directory = await getExternalStorageDirectory();
-        if (directory != null) {
-          final file = File('${directory.path}/generated_molecule_report.txt');
-          await file.writeAsString(generatedMolecule);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Report saved to: ${file.path}')),
-          );
+      if (kIsWeb) {
+        final blob = html.Blob([generatedMolecule], 'text/plain');
+        final url = html.Url.createObjectUrlFromBlob(blob);
+        final anchor = html.AnchorElement(href: url)
+          ..setAttribute('download', 'generated_molecule_report.txt')
+          ..click();
+        html.Url.revokeObjectUrl(url);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Report downloaded')),
+        );
+      } else {
+        if (await Permission.storage.request().isGranted) {
+          final directory = await getExternalStorageDirectory();
+          if (directory != null) {
+            final file =
+                File('${directory.path}/generated_molecule_report.txt');
+            await file.writeAsString(generatedMolecule);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Report saved to: ${file.path}')),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Could not access storage directory')),
+            );
+          }
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Could not access storage directory')),
+            const SnackBar(content: Text('Storage permission denied')),
           );
         }
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Storage permission denied')),
-        );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -164,14 +180,13 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          physics:
-              const AlwaysScrollableScrollPhysics(), // Ensure scrollbar is always available
+          physics: const AlwaysScrollableScrollPhysics(),
           child: ConstrainedBox(
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height -
                   AppBar().preferredSize.height -
                   MediaQuery.of(context).padding.top -
-                  32.0, // Account for padding and app bar
+                  32.0,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
