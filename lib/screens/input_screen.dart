@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 
 class InputScreen extends StatefulWidget {
   const InputScreen({super.key});
@@ -12,7 +13,7 @@ class _InputScreenState extends State<InputScreen> {
   String otherProtein = '';
   String smileStructure = '';
   String proteinProperties = '';
-  String potency = '';
+  String potency = ''; // Keep as empty string instead of defaulting to zero
   String? ingestionMethod;
   String constraints = '';
   String? filePath;
@@ -32,6 +33,26 @@ class _InputScreenState extends State<InputScreen> {
     'Dissolving in Water',
     'Inhaling'
   ];
+
+  Future<void> _pickPDF() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+        allowMultiple: false,
+      );
+
+      if (result != null && result.files.isNotEmpty) {
+        setState(() {
+          filePath = result.files.single.path;
+        });
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error picking file: $e')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,15 +160,16 @@ class _InputScreenState extends State<InputScreen> {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () async {
-                  print("idk");
-                },
-                child: const Text('Upload Report'),
+                onPressed: _pickPDF,
+                child: const Text('Upload PDF Report'),
               ),
               if (filePath != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  child: Text('Selected file path: $filePath'),
+                  child: Text(
+                    'Selected file: ${filePath!.split('/').last}',
+                    style: const TextStyle(fontSize: 14),
+                  ),
                 ),
               const SizedBox(height: 20),
               Center(
@@ -170,14 +192,28 @@ class _InputScreenState extends State<InputScreen> {
   }
 
   void _submitData() {
-    String userInput = 'Selected Proteins: ${selectedProteins.join(", ")}\n'
-        'Other Protein: $otherProtein\n'
-        'SMILES Structure: $smileStructure\n'
-        'Protein Properties: $proteinProperties\n'
-        'Desired Potency: $potency nM\n'
-        'Ingestion Method: ${ingestionMethod ?? "Not specified"}\n'
-        'Constraints: $constraints\n'
-        'File Path: ${filePath ?? "None"}';
+    String proteinsText = selectedProteins.isEmpty
+        ? 'None selected'
+        : selectedProteins.join(", ");
+    String otherProteinText =
+        otherProtein.isEmpty ? 'Not specified' : otherProtein;
+    String smileText =
+        smileStructure.isEmpty ? 'Not specified' : smileStructure;
+    String propertiesText =
+        proteinProperties.isEmpty ? 'Not specified' : proteinProperties;
+    String potencyText = potency.isEmpty ? 'Not specified' : '$potency nM';
+    String ingestionText = ingestionMethod ?? 'Not specified';
+    String constraintsText = constraints.isEmpty ? 'None' : constraints;
+    String fileText = filePath ?? 'None';
+
+    String userInput = 'Selected Proteins: $proteinsText\n'
+        'Other Protein: $otherProteinText\n'
+        'SMILES Structure: $smileText\n'
+        'Protein Properties: $propertiesText\n'
+        'Desired Potency: $potencyText\n'
+        'Ingestion Method: $ingestionText\n'
+        'Constraints: $constraintsText\n'
+        'File Path: $fileText';
 
     print(userInput);
 
