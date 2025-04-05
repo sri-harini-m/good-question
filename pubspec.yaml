@@ -10,7 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.2.0
-  flutter_dotenv: ^5.0.2
+  flutter_dotenv: ^5.1.0
+  file_picker: ^6.1.1
+  path_provider: ^2.1.1
+  permission_handler: ^11.0.0
+  universal_html: ^2.2.4
 
 dev_dependencies:
   flutter_test:
