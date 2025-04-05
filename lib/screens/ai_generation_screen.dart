@@ -24,6 +24,7 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
   bool isPaused = false;
   bool isStopped = false;
   Timer? timer;
+  String optimizationInput = '';
 
   @override
   void initState() {
@@ -66,8 +67,8 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
       }
 
       String prompt = fileContentBase64 != null
-          ? 'Given the following input parameters:\n$inputData\nAnd the base64-encoded content of the uploaded file (PDF/DOC):\n$fileContentBase64\nDecode the base64 content to access the file data, then optimize or improve the molecule described in the file based on the input parameters. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein.'
-          : 'Generate a potential molecule that interacts with protein, has these properties: $inputData. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein.';
+          ? 'Given the following input parameters:\n$inputData\nAnd the base64-encoded content of the uploaded file (PDF/DOC):\n$fileContentBase64\nDecode the base64 content to access the file data, then optimize or improve the molecule described in the file based on the input parameters. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein.Do not have diffrent sizes for the text, and do not reply like a chat bot'
+          : 'Generate a potential molecule that interacts with protein, has these properties: $inputData. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein.Do not have diffrent sizes for the text, and do not reply like a chat bot';
 
       final response = await http.post(
         url,
@@ -94,6 +95,63 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
         setState(() {
           generatedMolecule =
               "Error: Failed to fetch molecule (Status: ${response.statusCode})";
+        });
+      }
+    } catch (e) {
+      setState(() {
+        generatedMolecule = "Error: $e";
+      });
+    }
+  }
+
+  Future<void> optimizeMolecule() async {
+    if (optimizationInput.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter optimization changes')),
+      );
+      return;
+    }
+
+    try {
+      await dotenv.load(fileName: "../../.env");
+      final apiKey = dotenv.env['GEMINI_API_KEY'];
+      if (apiKey == null) throw Exception('API Key not found in .env');
+
+      final url = Uri.parse(
+          'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey');
+
+      String prompt =
+          'Optimize the following molecule based on the previous output and user changes:\n'
+          'Previous Output:\n$generatedMolecule\n'
+          'User Changes/Instructions:\n$optimizationInput\n'
+          'Return: updated molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein. Do not have diffrent sizes for the text, and do not reply like a chat bot';
+
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'contents': [
+            {
+              'parts': [
+                {'text': prompt}
+              ]
+            }
+          ]
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          generatedMolecule = data['candidates'][0]['content']['parts'][0]
+                  ['text'] ??
+              "No molecule optimized";
+          optimizationInput = '';
+        });
+      } else {
+        setState(() {
+          generatedMolecule =
+              "Error: Failed to optimize molecule (Status: ${response.statusCode})";
         });
       }
     } catch (e) {
@@ -206,6 +264,28 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
                       child: const Text('Download Report'),
                     ),
                   ],
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  'Optimize Molecule',
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  decoration: const InputDecoration(
+                    hintText: 'Enter changes or optimization instructions',
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 3,
+                  onChanged: (value) =>
+                      setState(() => optimizationInput = value),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: optimizeMolecule,
+                  child: const Text('Optimize'),
                 ),
               ],
             ),
