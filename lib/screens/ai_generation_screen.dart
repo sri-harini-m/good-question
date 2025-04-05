@@ -48,19 +48,6 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
     });
   }
 
-  Future<String?> _getBase64FileContent(String? filePath) async {
-    if (filePath != null && File(filePath).existsSync()) {
-      try {
-        final file = File(filePath);
-        final bytes = await file.readAsBytes();
-        return base64Encode(bytes);
-      } catch (e) {
-        return "Error encoding file: $e";
-      }
-    }
-    return null;
-  }
-
   Future<void> fetchMoleculeFromAI() async {
     try {
       final inputData = widget.userInput;
@@ -71,14 +58,12 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
       final url = Uri.parse(
           'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey');
 
-      String? filePath;
-      final filePathMatch =
-          RegExp(r'File Path: (.*)$', multiLine: true).firstMatch(inputData);
-      if (filePathMatch != null && filePathMatch.group(1) != "None") {
-        filePath = filePathMatch.group(1);
+      String? fileContentBase64;
+      final fileContentMatch =
+          RegExp(r'File Content: (.*)$', multiLine: true).firstMatch(inputData);
+      if (fileContentMatch != null && fileContentMatch.group(1) != "None") {
+        fileContentBase64 = fileContentMatch.group(1);
       }
-
-      String? fileContentBase64 = await _getBase64FileContent(filePath);
 
       String prompt = fileContentBase64 != null
           ? 'Given the following input parameters:\n$inputData\nAnd the base64-encoded content of the uploaded file (PDF/DOC):\n$fileContentBase64\nDecode the base64 content to access the file data, then optimize or improve the molecule described in the file based on the input parameters. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein.'

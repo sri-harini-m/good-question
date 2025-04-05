@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'dart:convert';
 
 class InputScreen extends StatefulWidget {
   const InputScreen({super.key});
@@ -13,10 +14,10 @@ class _InputScreenState extends State<InputScreen> {
   String otherProtein = '';
   String smileStructure = '';
   String proteinProperties = '';
-  String potency = ''; // Keep as empty string instead of defaulting to zero
+  String potency = '';
   String? ingestionMethod;
   String constraints = '';
-  String? filePath;
+  String? fileContentBase64;
 
   List<String> proteinOptions = [
     'BRCA1',
@@ -44,7 +45,14 @@ class _InputScreenState extends State<InputScreen> {
 
       if (result != null && result.files.isNotEmpty) {
         setState(() {
-          filePath = result.files.single.path;
+          final bytes = result.files.single.bytes;
+          if (bytes != null) {
+            fileContentBase64 = base64Encode(bytes);
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Error: Could not read file bytes')),
+            );
+          }
         });
       }
     } catch (e) {
@@ -163,11 +171,11 @@ class _InputScreenState extends State<InputScreen> {
                 onPressed: _pickPDF,
                 child: const Text('Upload PDF Report'),
               ),
-              if (filePath != null)
+              if (fileContentBase64 != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    'Selected file: ${filePath!.split('/').last}',
+                    'File uploaded successfully',
                     style: const TextStyle(fontSize: 14),
                   ),
                 ),
@@ -204,7 +212,7 @@ class _InputScreenState extends State<InputScreen> {
     String potencyText = potency.isEmpty ? 'Not specified' : '$potency nM';
     String ingestionText = ingestionMethod ?? 'Not specified';
     String constraintsText = constraints.isEmpty ? 'None' : constraints;
-    String fileText = filePath ?? 'None';
+    String fileText = fileContentBase64 ?? 'None';
 
     String userInput = 'Selected Proteins: $proteinsText\n'
         'Other Protein: $otherProteinText\n'
@@ -213,7 +221,7 @@ class _InputScreenState extends State<InputScreen> {
         'Desired Potency: $potencyText\n'
         'Ingestion Method: $ingestionText\n'
         'Constraints: $constraintsText\n'
-        'File Path: $fileText';
+        'File Content: $fileText';
 
     print(userInput);
 
