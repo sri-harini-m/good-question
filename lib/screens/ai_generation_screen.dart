@@ -13,7 +13,8 @@ class AiGenerationScreen extends StatefulWidget {
 }
 
 class _AiGenerationScreenState extends State<AiGenerationScreen> {
-  String generatedMolecule = "Generating potential molecules...";
+  String generatedMolecule =
+      "Generating potential molecules...\nAI is currently generating potential drug candidates...";
   int elapsedTime = 0;
   bool isPaused = false;
   bool isStopped = false;
@@ -62,7 +63,7 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
               'parts': [
                 {
                   'text':
-                      'Generate a potential molecule that interacts with protein, has a molecular weight of approximately, and exhibits properties as $inputData. Just return a molecule and its SMILES notation string maybe, just that nothing else.'
+                      'Generate a potential molecule that interacts with protein, has $inputData. Just return a molecule and its SMILES notation string maybe, just that nothing else. Output :molecular structure of drug candidate (give name if exists as medication already), properties of drug,potential side effects,estimated shelf life (how long till it expires),description of the drug and how it interacts with the protein.'
                 }
               ]
             }
@@ -119,12 +120,12 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16),
               ),
-              const SizedBox(height: 16),
-              const Text(
-                'AI is currently generating potential drug candidates...',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
+              // const SizedBox(height: 16),
+              // const Text(
+              //   'AI is currently generating potential drug candidates...',
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(fontSize: 16),
+              // ),
               const SizedBox(height: 20),
               Text(
                 'Time elapsed: ${elapsedTime}s',
