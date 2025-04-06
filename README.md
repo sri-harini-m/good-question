@@ -4,6 +4,10 @@ The project detailed in this repository can be accessed using the following link
 
 https://drugs-c339a.web.app/
 
+A demonstration video for the given project is shown here:
+
+https://youtu.be/lt_5q6qBuEc
+
 ## Introduction
 
 Hey everyone! We are team **Good Question**, and this is our submission for **Google's Solution Challenge 2025**.
