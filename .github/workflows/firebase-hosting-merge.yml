@@ -21,7 +21,7 @@ jobs:
           flutter-version: '3.19.2' # optional, can remove to use latest
 
       - name: Install dependencies
-        run: flutter pub clean
+        run: flutter clean
       - run: flutter pub get
       - run: flutter pub upgrade
 
