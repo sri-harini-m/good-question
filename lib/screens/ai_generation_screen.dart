@@ -54,10 +54,14 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
       final inputData = widget.userInput;
       // await dotenv.load(fileName: "../../.env");
       // final apiKey = dotenv.env['GEMINI_API_KEY'];
-      const apiKey = String.fromEnvironment('GEMINI_API_KEY');
-      setState(() {
-        generatedMolecule = apiKey;
-      });
+      final apiKey = String.fromEnvironment('GEMINI_API_KEY');
+      if (apiKey.isEmpty) {
+        setState(() {
+          generatedMolecule =
+              "API Key not configured in environment variables.";
+        });
+        return;
+      }
       if (apiKey == null) throw Exception('API Key not found in .env');
 
       final url = Uri.parse(
