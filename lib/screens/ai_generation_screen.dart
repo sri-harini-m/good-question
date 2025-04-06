@@ -66,10 +66,9 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
         fileContentBase64 = fileContentMatch.group(1);
       }
 
-      String prompt = fileContentBase64 != null
-          ? 'Given the following input parameters:\n$inputData\nAnd the base64-encoded content of the uploaded file (PDF/DOC):\n$fileContentBase64\nDecode the base64 content to access the file data, then optimize or improve the molecule described in the file based on the input parameters. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein.Do not have diffrent sizes for the text, and do not reply like a chat bot'
-          : 'Generate a potential molecule that interacts with protein, has these properties: $inputData. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein.Do not have diffrent sizes for the text, and do not reply like a chat bot';
-
+        String prompt = fileContentBase64 != null
+          ? 'Given the following input parameters:\n$inputData\nAnd the base64-encoded content of the uploaded file (PDF/DOC):\n$fileContentBase64\nDecode the base64 content to access the file data, create a potential drug that can target the given protein, then optimize or improve the molecule described in the file based on the input parameters. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein. Do not have diffrent sizes for the text, and do not reply like a chat bot\nIt should be in the format as follows.\nPotential Drug Candidate/SMILES Structure: [give the smiles structure of the drug candidate]\nAlready Discovered: [either write No or if name exists type that here]\nProperties of Drug Candidate: [insert drug candidate properties]\nPotential Side Effects: [write the side effects here]\nEstimated Shelf Life: [give an estimated shelf life of the drug]\nDrug Interaction: [give a description of how the drug woud interact with the target protein], Details: [any extra necessary information about the drug candidate]\n Do no provide any other information and make sure its formally written. regardless give some molecule that can fit this input parameters to the best of your ability'
+          : 'Generate a potential molecule that interacts with protein, create a potential drug that can target the given protein has these properties: $inputData. Return: molecular structure of drug candidate (give name if exists as medication already), SMILES notation string, properties of drug, potential side effects, estimated shelf life, description of the drug and how it interacts with the protein. Do not have different sizes for the text, and do not reply like a chat bot\nIt should be in the format as follows.\nPotential Drug Candidate/SMILES Structure: [give the smiles structure of the drug candidate]\nAlready Discovered: [either write No or if name exists type that here]\nProperties of Drug Candidate: [insert drug candidate properties]\nPotential Side Effects: [write the side effects here]\nEstimated Shelf Life: [give an estimated shelf life of the drug]\nDrug Interaction: [give a description of how the drug woud interact with the target protein], Details: [any extra necessary information about the drug candidate]\n Do no provide any other information and make sure its formally written regardless give some molecule that can fit this input paramters to the best of your ability.';
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
@@ -237,7 +236,7 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
               children: [
                 Text(
                   generatedMolecule,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.justify,
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 20),
