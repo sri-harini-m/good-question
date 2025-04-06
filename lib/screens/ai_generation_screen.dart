@@ -120,9 +120,17 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
     }
 
     try {
-      await dotenv.load(fileName: "../../.env");
-      final apiKey = dotenv.env['GEMINI_API_KEY'];
-      if (apiKey == null) throw Exception('API Key not found in .env');
+      const String apiKey = String.fromEnvironment('GEMINI_API_KEY');
+      if (apiKey.isEmpty) {
+        setState(() {
+          generatedMolecule =
+              "API Key not configured in environment variables.";
+        });
+        return;
+      }
+      // await dotenv.load(fileName: "../../.env");
+      // final apiKey = dotenv.env['GEMINI_API_KEY'];
+      // if (apiKey == null) throw Exception('API Key not found in .env');
 
       final url = Uri.parse(
           'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey');
