@@ -8,7 +8,7 @@ https://drugs-c339a.web.app/
 
 Hey everyone! We are team **Good Question**, and this is our submission for **Google's Solution Challenge 2025**.
 
-# Description About The Problem Statement and our Solution
+## Description About The Problem Statement and our Solution
 
 Drug Discovery is a very extensive and expensive process, taking up many years of research and thousands of dollars to complete. For Google's Solution Challenge 2025, we decided to tackle the problem of using AI and Google's Tech to speed things up.
 
