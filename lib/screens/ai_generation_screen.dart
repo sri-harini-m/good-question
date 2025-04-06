@@ -57,7 +57,7 @@ class _AiGenerationScreenState extends State<AiGenerationScreen> {
       setState(() {
         generatedMolecule = apiKey ?? "NO KEY";
       });
-      if (apiKey == null) throw Exception('API Key not found in .env');
+      // if (apiKey == null) throw Exception('API Key not found in .env');
 
       final url = Uri.parse(
           'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey');
