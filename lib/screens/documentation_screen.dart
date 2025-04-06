@@ -33,15 +33,15 @@ class _DocumentationScreenState extends State<DocumentationScreen> {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  "1. Input Screen: Start by entering the target protein, desired properties, and any existing molecules you want to consider.",
+                  "1. Input: Start by entering the target protein, desired properties, and any other details to be considered.",
                   style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(height: 8),
-                Text("2. AI Generation Screen: View the progress of the AI as it generates potential drug candidates based on your input parameters. You can cancel the generation process at any time.", style: TextStyle(fontSize: 16)),
+                Text("2. Generation: View the potential drug candidate based on your input parameters.", style: TextStyle(fontSize: 16)),
                 SizedBox(height: 8),
-                Text("3. Results Screen: Explore the list of generated candidates. Each candidate will have a short description.", style: TextStyle(fontSize: 16)),
+                Text("3. Optimization: Add new details to optimize the results.", style: TextStyle(fontSize: 16)),
                 SizedBox(height: 8),
-                Text("4. Optimization Screen: Select a candidate from the results screen to start the optimization process", style: TextStyle(fontSize: 16))
+                Text("4. Download: Download the results as a report.", style: TextStyle(fontSize: 16))
               ]),
         )),
     );
