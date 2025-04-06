@@ -6,7 +6,7 @@ https://drugs-c339a.web.app/
 
 # Introduction
 
-Hey everyon! We are team **Good Question**, and this is our submission for **Google's Solution Challenge 2025**.
+Hey everyone! We are team **Good Question**, and this is our submission for **Google's Solution Challenge 2025**.
 
 # Description About The Problem Statement and our Solution
 
