@@ -8,6 +8,9 @@
     ],
     "frameworksBackend": {
       "region": "asia-east1"
+    },
+    "env": {
+      "GEMINI_API_KEY": "AIzaSyCJszB69X2JmfPhde1mkiWMEZV6sN6c2FE"
     }
   }
 }
