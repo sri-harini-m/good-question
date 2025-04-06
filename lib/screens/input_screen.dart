@@ -24,7 +24,7 @@ class _InputScreenState extends State<InputScreen>
   late Animation<double> _fadeIn;
 
   List<String> proteinOptions = [
-    'BRCA1',
+    'BRCA2',
     'EGFR',
     'VEGF',
     'TP53',
