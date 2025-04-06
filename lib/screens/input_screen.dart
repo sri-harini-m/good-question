@@ -24,7 +24,7 @@ class _InputScreenState extends State<InputScreen>
   late Animation<double> _fadeIn;
 
   List<String> proteinOptions = [
-    'BRCA2',
+    'BRCA1',
     'EGFR',
     'VEGF',
     'TP53',
@@ -154,6 +154,44 @@ class _InputScreenState extends State<InputScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF1F2F6),
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
+        elevation: 0,
+        title: const Text(
+          'Drug Design Assistant',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/about');
+            },
+            child: const Text(
+              'About',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/documentation');
+            },
+            child: const Text(
+              'Documentation',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 60, 16, 40),
