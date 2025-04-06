@@ -332,7 +332,7 @@ class _InputScreenState extends State<InputScreen>
                             borderRadius: BorderRadius.circular(14),
                           ),
                         ),
-                        child: const Text("Submit & Generate"),
+                        child: const Text("Submit"),
                       ),
                     ),
                   ],
