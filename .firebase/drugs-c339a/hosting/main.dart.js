@@ -81775,7 +81775,7 @@ $S:503}
 A.nK.prototype={
 am(){return new A.NX()}}
 A.NX.prototype={
-N(a){return A.Ab(A.wd(B.SE),null,new A.cf(B.Dv,A.ads(A.jZ(A.b([B.SD,B.hy,B.SN,B.bY,B.SQ,B.bY,B.SX,B.xU,B.SB,B.bY,B.SO],t.D),B.b1,B.ay,B.aT),null),null))}}
+N(a){return A.Ab(A.wd(B.SF),null,new A.cf(B.Dv,A.ads(A.jZ(A.b([B.SE,B.hy,B.SO,B.bY,B.SR,B.bY,B.SX,B.xU,B.SC,B.bY,B.SP],t.D),B.b1,B.ay,B.aT),null),null))}}
 A.nN.prototype={
 am(){return new A.BP()}}
 A.BP.prototype={
@@ -81871,12 +81871,12 @@ l.click();(self.URL||self.webkitURL).revokeObjectURL(o)
 q.c.ai(t.Pu).f.qz(B.Np)}catch(j){n=A.aj(j)
 q.c.ai(t.Pu).f.qz(A.aso(null,null,null,null,null,B.O,null,A.df("Error saving report: "+A.l(n),null,null,null,null,null,null),null,B.e0,null,null,null,null,null,null,null,null,null))}return A.O(null,r)}})
 return A.P($async$C0,r)},
-N(a){var s,r,q,p=this,o=null,n=A.wd(B.SR),m=t.w,l=A.bV(a,o,m).w,k=A.wd(o)
+N(a){var s,r,q,p=this,o=null,n=A.wd(B.Sx),m=t.w,l=A.bV(a,o,m).w,k=A.wd(o)
 m=A.bV(a,o,m).w
 s=A.df(p.d,o,o,o,B.be,B.eK,o)
 r=A.df("Time elapsed: "+p.e+"s",o,o,o,B.be,o,o)
 q=t.D
-return A.Ab(n,o,new A.cf(B.e3,A.ads(new A.f3(new A.ae(0,1/0,l.a.b-k.fx.b-m.r.b-32,1/0),A.jZ(A.b([s,B.kd,r,B.kd,A.tx(A.b([A.xu(!1,A.df(p.f?"Resume":"Pause",o,o,o,o,o,o),o,o,o,o,o,o,p.gamW(),o,o),B.xT,A.xu(!1,B.SZ,o,o,o,o,o,o,p.gXf(),o,o),B.xT,A.xu(!1,B.SW,o,o,o,o,o,o,p.ga3k(),o,o)],q),B.aQ,B.jt,B.aT),B.kd,A.df("Optimize Molecule",o,o,o,B.yi,o,o),B.kc,A.Bg(B.EG,B.hz,3,new A.afZ(p)),B.kc,A.xu(!1,B.SG,o,o,o,o,o,o,p.galj(),o,o)],q),B.aQ,B.jt,B.aT),o),B.i2),o))}}
+return A.Ab(n,o,new A.cf(B.e3,A.ads(new A.f3(new A.ae(0,1/0,l.a.b-k.fx.b-m.r.b-32,1/0),A.jZ(A.b([s,B.kd,r,B.kd,A.tx(A.b([A.xu(!1,A.df(p.f?"Resume":"Pause",o,o,o,o,o,o),o,o,o,o,o,o,p.gamW(),o,o),B.xT,A.xu(!1,B.SZ,o,o,o,o,o,o,p.gXf(),o,o),B.xT,A.xu(!1,B.SW,o,o,o,o,o,o,p.ga3k(),o,o)],q),B.aQ,B.jt,B.aT),B.kd,A.df("Optimize Molecule",o,o,o,B.yi,o,o),B.kc,A.Bg(B.EG,B.hz,3,new A.afZ(p)),B.kc,A.xu(!1,B.SH,o,o,o,o,o,o,p.galj(),o,o)],q),B.aQ,B.jt,B.aT),o),B.i2),o))}}
 A.ag6.prototype={
 $1(a){var s=this.a
 if(!s.f&&!s.r)s.a7(new A.ag5(s))},
@@ -81927,7 +81927,7 @@ $S:0}
 A.oe.prototype={
 am(){return new A.PT()}}
 A.PT.prototype={
-N(a){return A.Ab(A.wd(B.Sz),null,new A.cf(B.e3,A.ads(A.jZ(B.Ge,B.b1,B.ay,B.aT),null),null))}}
+N(a){return A.Ab(A.wd(B.SA),null,new A.cf(B.e3,A.ads(A.jZ(B.Ge,B.b1,B.ay,B.aT),null),null))}}
 A.oN.prototype={
 am(){var s=t.s
 return new A.D3(A.b([],s),A.b(["BRCA1","EGFR","VEGF","TP53","TNF-alpha","ACE2"],s),A.b(["Injection","Pill","Syrup","Dissolving in Water","Inhaling"],s),null,null)}}
@@ -82093,7 +82093,7 @@ A.pc.prototype={
 am(){return new A.RX(A.b(["Binding Affinity","Solubility","Toxicity","Stability"],t.s))}}
 A.RX.prototype={
 N(a){var s=null,r=this.e,q=A.a0(r).i("af<1,oK>")
-return A.Ab(A.wd(B.SH),s,new A.cf(B.e3,A.jZ(A.b([B.SV,B.hy,A.df("You are currently optimizing Candidate A",s,s,s,B.PF,s,s),B.xU,B.SL,B.bY,A.asI(A.a3(new A.af(r,new A.alA(),q),!0,q.i("at.E")),8),B.Ns,A.jY(A.xu(!1,B.SI,s,s,s,s,s,s,new A.alB(),s,s),s,s),B.hy],t.D),B.b1,B.ay,B.aT),s))}}
+return A.Ab(A.wd(B.SI),s,new A.cf(B.e3,A.jZ(A.b([B.SV,B.hy,A.df("You are currently optimizing Candidate A",s,s,s,B.PF,s,s),B.xU,B.SM,B.bY,A.asI(A.a3(new A.af(r,new A.alA(),q),!0,q.i("at.E")),8),B.Ns,A.jY(A.xu(!1,B.SJ,s,s,s,s,s,s,new A.alB(),s,s),s,s),B.hy],t.D),B.b1,B.ay,B.aT),s))}}
 A.alA.prototype={
 $1(a){var s=null
 return A.Ju(!1,s,!0,new A.Ho(A.df(a,s,s,s,s,s,s),B.fu,s),s,!0,s,s,s,s,s,s,s,s,s,new A.alz(a),s,s,s,s,s,s,s)},
@@ -82108,7 +82108,7 @@ A.pB.prototype={
 am(){var s=t.s
 return new A.Ty(A.b(["Candidate A","Candidate B","Candidate C","Candidate D","Candidate E"],s),A.b(["This candidate has a high predicted binding affinity and good solubility","This candidate has shown promising results in preliminary toxicity tests","This candidate has a unique structure with potential for multi-target activity","This candidate is predicted to be highly stable in biological environments","This candidate exhibits a novel mechanism of action"],s))}}
 A.Ty.prototype={
-N(a){return A.Ab(A.wd(B.SU),null,A.jZ(A.b([new A.cf(B.e3,B.Sy,null),A.a1s(new A.cf(B.fr,A.aHR(new A.amU(this),5,new A.amV()),null),1)],t.D),B.b1,B.ay,B.aT))}}
+N(a){return A.Ab(A.wd(B.SU),null,A.jZ(A.b([new A.cf(B.e3,B.Sz,null),A.a1s(new A.cf(B.fr,A.aHR(new A.amU(this),5,new A.amV()),null),1)],t.D),B.b1,B.ay,B.aT))}}
 A.amV.prototype={
 $2(a,b){return B.CX},
 $S:507}
@@ -87415,11 +87415,11 @@ B.IE=new A.cO([100,B.BR,200,B.Bx,400,B.Cd,700,B.BL],t.pl)
 B.jw=new A.K_(B.IE,1,0.48627450980392156,0.30196078431372547,1,B.h)
 B.bA=new A.hm(6)
 B.Ou=new A.n(!0,B.jw,null,null,null,null,26,B.bA,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.Sx=new A.bZ("Drug Design Assistant",null,B.Ou,null,null,null,null,null,null)
+B.Sy=new A.bZ("Drug Design Assistant",null,B.Ou,null,null,null,null,null,null)
 B.bY=new A.ez(null,8,null,null)
 B.OY=new A.n(!0,B.J,null,null,null,null,15,null,null,null,null,null,1.4,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.SM=new A.bZ("Describe your target drug properties and let our AI assist in your discovery process.",null,B.OY,null,null,null,null,null,null)
-B.F8=A.b(s([B.Sx,B.bY,B.SM]),t.D)
+B.SN=new A.bZ("Describe your target drug properties and let our AI assist in your discovery process.",null,B.OY,null,null,null,null,null,null)
+B.F8=A.b(s([B.Sy,B.bY,B.SN]),t.D)
 B.F9=A.b(s([0,6,12,18]),t.t)
 B.mS=A.b(s(["text","multiline","number","phone","datetime","emailAddress","url","visiblePassword","name","address","none","webSearch","twitter"]),t.s)
 B.Fb=A.b(s([239,191,189]),t.t)
@@ -87495,15 +87495,15 @@ B.UO=new A.l5(12,0.14)
 B.mV=A.b(s([B.UN,B.US,B.UQ,B.UR,B.UP,B.UO]),A.ar("A<l5>"))
 B.Gd=A.b(s([-1,0,0,1,0,0,-1,0,1,0,0,0,-1,1,0,1,1,1,1,0]),t.n)
 B.be=new A.n(!0,null,null,null,null,null,16,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.SF=new A.bZ("This application is a Drug Discovery Assistant powered by Generative AI. It is designed to help researchers identify, design, and optimize potential drug candidates.",null,B.be,null,null,null,null,null,null)
+B.SG=new A.bZ("This application is a Drug Discovery Assistant powered by Generative AI. It is designed to help researchers identify, design, and optimize potential drug candidates.",null,B.be,null,null,null,null,null,null)
 B.hy=new A.ez(null,16,null,null)
 B.yi=new A.n(!0,null,null,null,null,null,18,B.bA,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.Sw=new A.bZ("How to Use:",null,B.yi,null,null,null,null,null,null)
-B.SJ=new A.bZ("1. Input Screen: Start by entering the target protein, desired properties, and any existing molecules you want to consider.",null,B.be,null,null,null,null,null,null)
-B.SK=new A.bZ("2. AI Generation Screen: View the progress of the AI as it generates potential drug candidates based on your input parameters. You can cancel the generation process at any time.",null,B.be,null,null,null,null,null,null)
+B.SK=new A.bZ("1. Input Screen: Start by entering the target protein, desired properties, and any existing molecules you want to consider.",null,B.be,null,null,null,null,null,null)
+B.SL=new A.bZ("2. AI Generation Screen: View the progress of the AI as it generates potential drug candidates based on your input parameters. You can cancel the generation process at any time.",null,B.be,null,null,null,null,null,null)
 B.SY=new A.bZ("3. Results Screen: Explore the list of generated candidates. Each candidate will have a short description.",null,B.be,null,null,null,null,null,null)
-B.SA=new A.bZ("4. Optimization Screen: Select a candidate from the results screen to start the optimization process",null,B.be,null,null,null,null,null,null)
-B.Ge=A.b(s([B.SF,B.hy,B.Sw,B.bY,B.SJ,B.bY,B.SK,B.bY,B.SY,B.bY,B.SA]),t.D)
+B.SB=new A.bZ("4. Optimization Screen: Select a candidate from the results screen to start the optimization process",null,B.be,null,null,null,null,null,null)
+B.Ge=A.b(s([B.SG,B.hy,B.Sw,B.bY,B.SK,B.bY,B.SL,B.bY,B.SY,B.bY,B.SB]),t.D)
 B.zf=new A.H7(2,"outer")
 B.lC=new A.B(0.09803921568627451,0,0,0,B.h)
 B.zO=new A.bf(0.2,B.zf,B.lC,B.e,11)
@@ -88911,10 +88911,10 @@ B.xX=new A.jz(5,"timeout")
 B.Nm=new A.tP(null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.T_=new A.bZ("Please enter optimization changes",null,null,null,null,null,null,null,null)
 B.Nn=new A.kS(B.T_,null,null,null,null,null,null,null,null,null,null,null,null,B.e0,null,null,null,B.O,null)
-B.SP=new A.bZ("Error: Could not read file bytes",null,null,null,null,null,null,null,null)
-B.No=new A.kS(B.SP,null,null,null,null,null,null,null,null,null,null,null,null,B.e0,null,null,null,B.O,null)
-B.SC=new A.bZ("Report downloaded",null,null,null,null,null,null,null,null)
-B.Np=new A.kS(B.SC,null,null,null,null,null,null,null,null,null,null,null,null,B.e0,null,null,null,B.O,null)
+B.SQ=new A.bZ("Error: Could not read file bytes",null,null,null,null,null,null,null,null)
+B.No=new A.kS(B.SQ,null,null,null,null,null,null,null,null,null,null,null,null,B.e0,null,null,null,B.O,null)
+B.SD=new A.bZ("Report downloaded",null,null,null,null,null,null,null,null)
+B.Np=new A.kS(B.SD,null,null,null,null,null,null,null,null,null,null,null,null,B.e0,null,null,null,B.O,null)
 B.xY=new A.AN(0,"permissive")
 B.Nq=new A.AN(1,"normal")
 B.Nr=new A.AN(2,"forced")
@@ -89272,21 +89272,21 @@ B.Rk=new A.n(!0,B.K,null,".AppleSystemUIFont",null,null,null,null,null,null,null
 B.RC=new A.n(!0,B.l,null,".AppleSystemUIFont",null,null,null,null,null,null,null,null,null,null,null,null,null,B.f,null,null,null,"blackRedwoodCity labelMedium",null,null,null,null)
 B.OD=new A.n(!0,B.l,null,".AppleSystemUIFont",null,null,null,null,null,null,null,null,null,null,null,null,null,B.f,null,null,null,"blackRedwoodCity labelSmall",null,null,null,null)
 B.Sv=new A.dx(B.Qi,B.Pl,B.Qj,B.QT,B.P_,B.P6,B.PG,B.QG,B.PU,B.Ro,B.Os,B.OO,B.Rk,B.RC,B.OD)
+B.Sx=new A.bZ("Potential Drug Discovery",null,null,null,null,null,null,null,null)
 B.kl=new A.n(!0,null,null,null,null,null,24,B.bA,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.Sy=new A.bZ("Generated Results",null,B.kl,null,null,null,null,null,null)
-B.Sz=new A.bZ("Documentation",null,null,null,null,null,null,null,null)
+B.Sz=new A.bZ("Generated Results",null,B.kl,null,null,null,null,null,null)
+B.SA=new A.bZ("Documentation",null,null,null,null,null,null,null,null)
 B.RH=new A.n(!0,null,null,null,null,null,20,B.bA,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.SB=new A.bZ("Problem Statement",null,B.RH,null,null,null,null,null,null)
-B.SD=new A.bZ("About Our Mission",null,B.kl,null,null,null,null,null,null)
-B.SE=new A.bZ("About us",null,null,null,null,null,null,null,null)
-B.SG=new A.bZ("Optimize",null,null,null,null,null,null,null,null)
-B.SH=new A.bZ("Optimization",null,null,null,null,null,null,null,null)
-B.SI=new A.bZ("Submit Optimization",null,null,null,null,null,null,null,null)
-B.SL=new A.bZ("Select an option to improve:",null,B.be,null,null,null,null,null,null)
-B.SN=new A.bZ("This application was developed by a team of passionate AI and drug discovery enthusiasts, driven by the desire to revolutionize the pharmaceutical landscape.",null,B.be,null,null,null,null,null,null)
-B.SO=new A.bZ("The process of drug discovery is time-consuming, expensive, and often inefficient, with a high rate of failure in clinical trials. Traditional methods rely heavily on trial and error, requiring years of research and significant financial investment. Additionally, the complexity of biological systems and the vast chemical space make it challenging to identify promising drug candidates efficiently. Generative AI, with its ability to analyze large datasets, predict molecular interactions, and generate novel compounds, has the potential to revolutionize this process. However, there is a lack of accessible, user-friendly tools that leverage generative AI to assist researchers in accelerating drug discovery while reducing costs and improving success rates.",null,B.be,null,null,null,null,null,null)
-B.SQ=new A.bZ("Our mission is to accelerate the drug discovery process by leveraging the power of Generative AI.",null,B.be,null,null,null,null,null,null)
-B.SR=new A.bZ("AI Generation Progress",null,null,null,null,null,null,null,null)
+B.SC=new A.bZ("Problem Statement",null,B.RH,null,null,null,null,null,null)
+B.SE=new A.bZ("About Our Mission",null,B.kl,null,null,null,null,null,null)
+B.SF=new A.bZ("About us",null,null,null,null,null,null,null,null)
+B.SH=new A.bZ("Optimize",null,null,null,null,null,null,null,null)
+B.SI=new A.bZ("Optimization",null,null,null,null,null,null,null,null)
+B.SJ=new A.bZ("Submit Optimization",null,null,null,null,null,null,null,null)
+B.SM=new A.bZ("Select an option to improve:",null,B.be,null,null,null,null,null,null)
+B.SO=new A.bZ("This application was developed by a team of passionate AI and drug discovery enthusiasts, driven by the desire to revolutionize the pharmaceutical landscape.",null,B.be,null,null,null,null,null,null)
+B.SP=new A.bZ("The process of drug discovery is time-consuming, expensive, and often inefficient, with a high rate of failure in clinical trials. Traditional methods rely heavily on trial and error, requiring years of research and significant financial investment. Additionally, the complexity of biological systems and the vast chemical space make it challenging to identify promising drug candidates efficiently. Generative AI, with its ability to analyze large datasets, predict molecular interactions, and generate novel compounds, has the potential to revolutionize this process. However, there is a lack of accessible, user-friendly tools that leverage generative AI to assist researchers in accelerating drug discovery while reducing costs and improving success rates.",null,B.be,null,null,null,null,null,null)
+B.SR=new A.bZ("Our mission is to accelerate the drug discovery process by leveraging the power of Generative AI.",null,B.be,null,null,null,null,null,null)
 B.SS=new A.bZ("Submit & Generate",null,null,null,null,null,null,null,null)
 B.ST=new A.bZ("Upload PDF",null,null,null,null,null,null,null,null)
 B.SU=new A.bZ("Results",null,null,null,null,null,null,null,null)
